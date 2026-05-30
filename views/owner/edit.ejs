@@ -1,0 +1,95 @@
+<% layout ("layouts/boilerplate") %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-12">
+      <div class="form-section">
+        <h1 class="text-center mb-4">Edit Item</h1>
+        <hr>
+
+        <form method="post" action="/owner/edit/<%= item.id %>?_method=PUT" novalidate class="needs-validation">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name of Product</label>
+            <input type="text" class="form-control" value="<%= item.name %>" name="item[name]" id="name" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Image Link</label>
+            <input type="text" class="form-control" value="<%= item.image %>" name="item[image]" id="image" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="price" class="form-label">Enter Price of Product</label>
+            <input type="number" class="form-control" value="<%= item.price %>" name="item[price]" id="price" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description of Product</label>
+            <textarea class="form-control" name="item[description]" id="description" rows="4" required><%= item.description %></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="item[gender]" value="Male" id="radioMale" <%= item.gender === 'Male' ? 'checked' : '' %>>
+                  <label class="form-check-label" for="radioMale">
+                    Male
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="item[gender]" value="Female" id="radioFemale" <%= item.gender === 'Female' ? 'checked' : '' %>>
+                  <label class="form-check-label" for="radioFemale">
+                    Female
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="mb-3">
+            <label class="form-label">Do you want to give discount?</label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="item[isDiscount]" value="true" id="discountYes" <%= item.isDiscount == true ? 'checked' : '' %>>
+                  <label class="form-check-label" for="discountYes">
+                    Yes
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="item[isDiscount]" value="false" id="discountNo" <%= item.isDiscount == false ? 'checked' : '' %>>
+                  <label class="form-check-label" for="discountNo">
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="discountPercent" class="form-label">How much percent discount?</label>
+            <input type="number" placeholder="0" class="form-control" name="item[percent_discount]" id="discountPercent" value="<%= item.percent_discount %>" min="0" max="100">
+          </div>
+
+          <div class="mb-4">
+            <label for="rating" class="form-label">Rating</label>
+            <input type="text" class="form-control" name="item[rating]" id="rating" value="<%= item.rating %>" min="1" max="5" step="0.1">
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/owner/items" class="btn btn-secondary me-md-2">Cancel</a>
+            <button class="btn btn-primary">Update Item</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
